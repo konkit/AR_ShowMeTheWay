@@ -10,3 +10,8 @@
 	right: 0;
 	overflow: hidden;
 }
+
+#menu {
+	position: absolute;
+	z-index: 1000;
+}
