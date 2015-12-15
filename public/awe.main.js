@@ -2,7 +2,7 @@ var markerData = {
   markers: [
     {
       locationId: 'someLocationPlaceholder',
-      markerId: 'someMarkerPlaceholder',
+      markerId: '64',
       directions: [
         {
           targetLocationId: 'someLocationPlaceholder',
@@ -88,20 +88,26 @@ function addEvents() {
     handler: function(event) {
       if (event.detail) {
 
-        //TODO: Change this to 
-        if (event.detail['64']) { // we are mapping marker #64 to this projection
-          awe.pois.update({
-            data: {
-              visible: true,
-              position: { x:0, y:0, z:0 },
-              matrix: event.detail['64'].transform
-            },
-            where: {
-              id: 'poi_1'
-            }
-          });
-        }
-        else {
+        var found = false;
+
+        markerData.markers.forEach(function(marker) {
+          if (event.detail[marker.markerId]) { // we are mapping marker #64 to this projection
+            found = true;
+
+            awe.pois.update({
+              data: {
+                visible: true,
+                position: { x:0, y:0, z:0 },
+                matrix: event.detail[marker.markerId].transform
+              },
+              where: {
+                id: 'poi_1'
+              }
+            });
+          }
+        });
+
+        if( found == false ) {
           awe.pois.update({
             data: {
               visible: false
@@ -111,6 +117,7 @@ function addEvents() {
             }
           });
         }
+
         awe.scene_needs_rendering = 1;
       }
     }
