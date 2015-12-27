@@ -75,21 +75,23 @@ if (!createObjectURL) {
 // Get available cameras
 //TODO: Well, right now it chooses the last camera (last iteration assigns last camera)
 //TODO: It would be good if it could be chosen by user
-MediaStreamTrack.getSources(function(sourceInfos) {
-  var videoSource = null;
+function startCam() {
+  MediaStreamTrack.getSources(function (sourceInfos) {
+    var videoSource = null;
 
-  for (var i = 0; i != sourceInfos.length; ++i) {
-    var sourceInfo = sourceInfos[i];
-    if (sourceInfo.kind === 'video') {
-      console.log('Video:', sourceInfo.id, sourceInfo.label || 'camera');
-      videoSource = sourceInfo.id;
-    } else {
-      console.log('Some other kind of source: ', sourceInfo);
+    for (var i = 0; i != sourceInfos.length; ++i) {
+      var sourceInfo = sourceInfos[i];
+      if (sourceInfo.kind === 'video') {
+        console.log('Video:', sourceInfo.id, sourceInfo.label || 'camera');
+        videoSource = sourceInfo.id;
+      } else {
+        console.log('Some other kind of source: ', sourceInfo);
+      }
     }
-  }
 
-  sourceSelected(videoSource);
-});
+    sourceSelected(videoSource);
+  });
+}
 
 function sourceSelected(videoSource) {
   var constraints = {
