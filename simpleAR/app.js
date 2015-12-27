@@ -257,9 +257,3 @@ function initializeTracker()
   // And tell the raster object that the underlying canvas has changed.
   redraw();
 }
-
-function showMarker()
-{
-  var win = window.open('./marker.png','Marker','width=420,height=420');
-  win.focus();
-}
