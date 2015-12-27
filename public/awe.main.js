@@ -7,11 +7,11 @@ var markerData = {
         {
           targetLocationId: 'someLocationPlaceholder',
           rotation: { x: 0, y: 0, z: 0 }
-        },
+        }
       ]
-    },
+    }
   ]
-}
+};
 
 window.addEventListener('load', function() {
 
@@ -24,9 +24,9 @@ window.addEventListener('load', function() {
         {
           id: 'point_light',
           type: 'point',
-          color: 0xFFFFFF,
-        },
-      ],
+          color: 0xFFFFFF
+        }
+      ]
     },
     ready: function() {
       awe.util.require([
@@ -35,18 +35,18 @@ window.addEventListener('load', function() {
           files: [
             [ 'js/awe-standard-dependencies.js', 'js/awe-standard.js'],
             'js/awe-jsartoolkit-dependencies.js',
-            'js/awe.marker_ar.js',
+            'js/awe.marker_ar.js'
           ],
           success: function() {
             initialize();
-          },
+          }
         },
         {
           capabilities: [],
           success: function() {
             document.body.innerHTML = '<p>Try this demo in the latest version of Chrome or Firefox on a PC or Android device</p>';
-          },
-        },
+          }
+        }
       ]);
     }
   });
@@ -68,7 +68,7 @@ function addProjections() {
     id:'projection_1',
     geometry: { shape: 'cube', x: 200, y: 200, z: 200 },
     material:{ type: 'phong', color: 0xFFFFFF },
-    texture: { path: 'awe_by_buildAR.png' },
+    texture: { path: 'awe_by_buildAR.png' }
   }, { poi_id: 'poi_1' });
 }
 
