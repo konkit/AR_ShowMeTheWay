@@ -8,77 +8,15 @@
     <script type="text/javascript" src="x3dom.js"></script>
     <script type="text/javascript" src="JSARToolKit.js"></script>
 
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-
-    <script>
-        if (!window.jQuery) {
-            document.write("<link rel='stylesheet' href='jquery-ui.css'>");
-            document.write("<script type='text/javascript' src='jquery-1.9.1.js'><\/script>");
-            document.write("<script type='text/javascript' src='jquery-ui.js'><\/script>");
-        }
-    </script>
+    <link rel='stylesheet' href='jquery-ui.css'>
+    <script type='text/javascript' src='jquery-1.9.1.js'></script>
+    <script type='text/javascript' src='jquery-ui.js'></script>
 <body>
     <div class="ar">
         <canvas id="bgnd" width="640px" height="480px"></canvas>
     </div>
 
     <div id='container'>
-        <!--<X3D id="x3d" showStat='true' showLog='false' width="640px" height="480px">-->
-            <!--<Scene>-->
-                <!--<Viewfrustum id="vf"></Viewfrustum>-->
-
-                <!--<MatrixTransform id="root">-->
-                    <!--<Transform rotation="0 1 0 3.14159265359">-->
-                        <!--<Transform rotation="0 0 1 3.14159265359">-->
-                            <!--<Shape>-->
-                                <!--<Appearance>-->
-                                    <!--<Material diffuseColor=".7 .5 .2" specularColor=".2 .2 .2"></Material>-->
-                                    <!--<ImageTexture url="marker.png"></ImageTexture>-->
-                                <!--</Appearance>-->
-                                <!--<Plane size="120 120"></Plane>-->
-                            <!--</Shape>-->
-
-                            <!--<transform id="planet" translation="0 0 66">-->
-                                <!--<shape id="earth">-->
-                                    <!--<appearance>-->
-                                        <!--<imageTexture url='"../texture/earth.jpg"'></imageTexture>-->
-                                    <!--</appearance>-->
-                                    <!--<sphere radius="60"></sphere>-->
-                                <!--</shape>-->
-                                <!--<shape id="clouds">-->
-                                    <!--<appearance>-->
-                                        <!--<imageTexture url='"../texture/cloudimage.png"'>-->
-                                        <!--</imageTexture>-->
-                                    <!--</appearance>-->
-                                    <!--<sphere radius="66"></sphere>-->
-                                <!--</shape>-->
-                            <!--</transform>-->
-
-                            <!--<Shape>-->
-                                <!--<Appearance>-->
-                                    <!--<LineProperties linewidthScaleFactor="2"></LineProperties>-->
-                                <!--</Appearance>-->
-                                <!--<IndexedLineSet DEF="cs" coordIndex="0 1 -1, 2 3 -1, 4 5 -1">-->
-                                    <!--<Coordinate point="150 0 0, 0 0 0, 0 150 0, 0 0 0, 0 0 150, 0 0 0"></Coordinate>-->
-                                    <!--<Color color="1 0 0, 1 0 0, 0 1 0, 0 1 0, 0 0 1, 0 0 1"></Color>-->
-                                <!--</IndexedLineSet>-->
-                            <!--</Shape>-->
-                        <!--</Transform>-->
-                    <!--</Transform>-->
-                <!--</MatrixTransform>-->
-
-                <!--<TimeSensor id='TS_planet' cycleInterval='24' loop='true' enabled='false'></TimeSensor>-->
-                <!--<OrientationInterpolator DEF='OI_planet' key='0, 0.5, 1' keyValue='0 1 0 0, 0 1 0 3.14, 0 1 0 6.28'>-->
-                <!--</OrientationInterpolator>-->
-                <!--<ROUTE fromNode='TS_planet' fromField='fraction_changed' toNode='OI_planet' toField='set_fraction'>-->
-                <!--</ROUTE>-->
-                <!--<ROUTE fromNode='OI_planet' fromField='value_changed' toNode='planet' toField='set_rotation'>-->
-                <!--</ROUTE>-->
-            <!--</Scene>-->
-        </X3D>
-
         <X3D id="x3d" showStat='true' showLog='false' width="640px" height="480px">
             <Scene>
                 <Viewfrustum id="vf"></Viewfrustum>
@@ -96,8 +34,6 @@
 
     <div class="state">
         <span id="status">Not tracking...</span>
-        <br>
-        <span>Marker Tracker: <a href="https://github.com/kig/JSARToolKit">JSARToolKit.js</a></span>
     </div>
 
     <div class="state">
@@ -111,6 +47,6 @@
 
     <h1>Augmented Reality with X3DOM and JSARToolKit</h1>
 
-    <script src="cameraBasedTracking.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
