@@ -1,3 +1,11 @@
+// In Quaternion format
+var arrowsRotationData = {
+  1:  '0 1 0 3.14159265359',
+  2:  '0 1 0 0',
+  64: '0 1 0 1.57079632679'
+};
+
+
 // CAMERA_BASED TRACKING STUFF
 window.URL = window.URL || window.webkitURL;
 
@@ -19,7 +27,7 @@ var detector = null;
 var raster = null;
 
 var resultMat = null;
-var threshold = 100; //128;
+var threshold = 100;
 
 document.getElementById("threshold").innerHTML = threshold;
 
@@ -112,9 +120,6 @@ function toggleTracking()
     video.src = "";
     videoStream.stop();
     videoStream = null;
-
-    // disable animation when not tracking
-    document.getElementById("TS_planet").setAttribute("enabled", "false");
   }
   else {
     startCam();
@@ -151,6 +156,18 @@ function animate()
   var markerCount = detector.detectMarkerLite(raster, threshold);
 
   for (var i=0; i<markerCount; i++) {
+    var markerId = detector.getARCodeIndex(i);
+
+    console.log("Marker #" + i + " id: " + markerId );
+
+    var rotationData = arrowsRotationData[markerId];
+
+    console.log(rotationData);
+
+    if( rotationData !== 'undefined' ) {
+      document.getElementById('arrowRotation').setAttribute('rotation', rotationData);
+    }
+
     // Get the marker matrix into the result matrix.
     detector.getTransformMatrix(i, resultMat);
 
