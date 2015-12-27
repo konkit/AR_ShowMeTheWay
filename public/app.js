@@ -72,9 +72,35 @@ if (!createObjectURL) {
   throw new Error("URL.createObjectURL not found.");
 }
 
-function startCam() {
+// Get available cameras
+//TODO: Well, right now it chooses the last camera (last iteration assigns last camera)
+//TODO: It would be good if it could be chosen by user
+MediaStreamTrack.getSources(function(sourceInfos) {
+  var videoSource = null;
+
+  for (var i = 0; i != sourceInfos.length; ++i) {
+    var sourceInfo = sourceInfos[i];
+    if (sourceInfo.kind === 'video') {
+      console.log('Video:', sourceInfo.id, sourceInfo.label || 'camera');
+      videoSource = sourceInfo.id;
+    } else {
+      console.log('Some other kind of source: ', sourceInfo);
+    }
+  }
+
+  sourceSelected(videoSource);
+});
+
+function sourceSelected(videoSource) {
+  var constraints = {
+    audio: false,
+    video: {
+      optional: [{sourceId: videoSource}]
+    }
+  };
+
   getUserMedia(
-    {video: true, audio: false},
+    constraints,
     function(stream) {
       video.crossOrigin = "";
       video.src = createObjectURL(stream);
@@ -84,7 +110,6 @@ function startCam() {
       alert("Could not access webcam.");
     });
 }
-startCam();
 
 
 document.onload = function()
